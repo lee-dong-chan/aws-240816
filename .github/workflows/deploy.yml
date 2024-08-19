@@ -217,7 +217,7 @@ jobs:
             fi
             nvm use --lts
             cd /var/www/backend
-            npm i --production
+            npm i --production'
 
       - name: Start Server
         run: |
