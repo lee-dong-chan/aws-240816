@@ -206,13 +206,7 @@ jobs:
             fi
             nvm use --lts
             cd /var/www/backend
-            npm i --production 
-            echo "MYSQL_HOST=${{ secrets.MYSQL_HOST }}" > /var/www/backend/.env
-            echo "MYSQL_USER=${{ secrets.MYSQL_USER }}" >> /var/www/backend/.env
-            echo "MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}" >> /var/www/backend/.env
-            echo "MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }}" >> /var/www/backend/.env
-            echo "PORT=${{ secrets.PORT }}" >> /var/www/backend/.env
-            echo "MESSAGE=${{ secrets.MESSAGE }}" >> /var/www/backend/.env
+            npm i --production
 
       - name: Start Server
         run: |
