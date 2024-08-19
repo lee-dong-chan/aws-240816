@@ -180,6 +180,16 @@ jobs:
         working-directory: ./mock-test
         run: npm i
 
+      - name: set env
+        working-directory: ./mock-test
+        run: |
+          echo "MYSQL_HOST=${{ secrets.MYSQL_HOST }}" > .env
+          echo "MYSQL_USER=${{ secrets.MYSQL_USER }}" >> .env
+          echo "MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}" >> .env
+          echo "MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }}" >> .env
+          echo "PORT=${{ secrets.PORT }}" >> .env
+          echo "MESSAGE=${{ secrets.MESSAGE }}" >> .env
+
       - name: Build Back
         working-directory: ./mock-test
         run: |
@@ -193,6 +203,7 @@ jobs:
             mkdir /var/www/backend'
           rsync -avz -e "ssh" ./mock-test/build/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/backend
           rsync -avz -e "ssh" ./mock-test/package.json ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/backend/package.json
+          rsync -avz -e "ssh" ./mock-test/.env ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/backend/.env
 
       - name: Install and Configure Node.js and PM2
         run: |
