@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  test:
+  backtest:
     runs-on: ubuntu-latest
 
     services:
@@ -51,4 +51,18 @@ jobs:
 
       - name: Run Test of backend
         working-directory: ./mock-test
+        run: npm test
+
+  fronttest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies of backend
+        working-directory: ./todo_list
+        run: npm i
+
+      - name: Run Test of backend
+        working-directory: ./todo_list
         run: npm test
