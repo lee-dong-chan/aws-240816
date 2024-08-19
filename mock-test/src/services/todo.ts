@@ -55,7 +55,6 @@ export const patchTodo = async ({
 };
 
 export const deleteTodo = async (id: number) => {
-  // await Todo.destroy({ where: { id } });
   const todo = await Todo.findByPk(id);
   // const todoIdx = todoList.findIndex((item: Todo) => item.id === id);
   if (todo == null) throw new Error("not found todo item");
