@@ -19,6 +19,7 @@ router.get("/", async (req: Request, res: Response) => {
 
 router.patch("/", async (req: Request, res: Response) => {
   try {
+    console.log(req.body);
     const todo = await patchTodo(req.body);
     res.status(200).json(todo);
   } catch (error) {
@@ -29,6 +30,7 @@ router.patch("/", async (req: Request, res: Response) => {
 
 router.delete("/:id", async (req: Request, res: Response) => {
   try {
+    console.log(req.params.id);
     const todo = await deleteTodo(+req.params.id);
     res.status(200).json(todo);
   } catch (error) {

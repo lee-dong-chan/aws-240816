@@ -24,3 +24,23 @@ export const addTodo = async ({ title }: Todo): Promise<Todo> => {
     throw new Error("Failed to Add List");
   }
 };
+
+export const updateTodo = async ({ id, title }: Todo): Promise<Todo> => {
+  try {
+    const response = await instance.patch(`/todo`, { id, title });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw new Error("Failed to Add List");
+  }
+};
+
+export const deleteTodo = async ({ id }: Todo): Promise<Todo> => {
+  try {
+    const response = await instance.delete(`/todo/${id}`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw new Error("Failed to Add List");
+  }
+};
