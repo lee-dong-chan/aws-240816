@@ -180,6 +180,12 @@ jobs:
         working-directory: ./mock-test
         run: npm i
 
+      - name: Build Back
+        working-directory: ./mock-test
+        run: |
+          npx tsc
+          ls -al
+
       # - name: delete map
       #   working-directory: ./mock-test/build
       #   run: |
