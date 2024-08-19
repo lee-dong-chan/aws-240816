@@ -45,9 +45,9 @@ jobs:
       - name: Install mySQL Client
         run: sudo apt-get install mysql-client
 
-      - name: Run mySQL commands
-        run: |
-          mysql --h "127.0.0.1" -u ${{secrets.MYSQL_USER}} -p${{secrets.MYSQL_PASSWORD}} -e "SHOW DATABASES"
+      # - name: Run mySQL commands
+      #   run: |
+      #     mysql --h "127.0.0.1" -u ${{secrets.MYSQL_USER}} -p${{secrets.MYSQL_PASSWORD}} -e "SHOW DATABASES"
 
       - name: set env
         working-directory: ./mock-test
@@ -207,13 +207,12 @@ jobs:
             nvm use --lts
             cd /var/www/backend
             npm i --production 
-            echo COOKIE="${{ secrets.COOKIE }}" > /var/www/backend/.env
-            echo SESSION="${{ secrets.SESSION }}" >> /var/www/backend/.env
-            echo PORT="${{ secrets.PORT}}" >> /var/www/backend/.env
-            echo MONGURL="${{ secrets.MONGURL }}" >> /var/www/backend/.env
-            echo IV="${{ secrets.IV }}" >> /var/www/backend/.env
-            echo SALT="${{ secrets.SALT }}" >> /var/www/backend/.env
-            echo KEY="${{ secrets.KEY  }}" >> /var/www/backend/.env'
+            echo "MYSQL_HOST=${{ secrets.MYSQL_HOST }}" > /var/www/backend/.env
+            echo "MYSQL_USER=${{ secrets.MYSQL_USER }}" >> /var/www/backend/.env
+            echo "MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}" >> /var/www/backend/.env
+            echo "MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }}" >> /var/www/backend/.env
+            echo "PORT=${{ secrets.PORT }}" >> /var/www/backend/.env
+            echo "MESSAGE=${{ secrets.MESSAGE }}" >> /var/www/backend/.env
 
       - name: Start Server
         run: |
