@@ -37,7 +37,7 @@ jobs:
 
       - name: wait for mySQL to be ready
         run: |
-          unti;; mysqladmin ping -h "127.0.0.1" --silent; do
+          until mysqladmin ping -h "127.0.0.1" --silent; do
             echo "Wating for mySQL"
             sleep 5
           done
