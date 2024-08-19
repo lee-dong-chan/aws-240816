@@ -17,9 +17,9 @@ jobs:
           - 3306:3306
         env:
           MYSQL_ROOT_PASSWORD: root
-          MYSQL_USER: ${{secrets.MTSQL_USER}}
-          MYSQL_PASSWORD: ${{secrets.MYSQL_PASSWORD})
-          MYSQL_DATABASE: ${{secrets.MYSQL_DATABASE}}
+          MYSQL_USER: ${{ secrets.MTSQL_USER }}
+          MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD })
+          MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
         options: >-
           --health-cmd="mysqladmin ping"
           --health-interval=10s
