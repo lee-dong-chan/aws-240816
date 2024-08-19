@@ -35,6 +35,20 @@ jobs:
         with:
           node-version: "20"
 
+      - name: wait for mySQL to be ready
+        run: |
+          unti;; mysqladmin ping -h "127.0.0.1" --silent; do
+            echo "Wating for mySQL"
+            sleep 5
+          done
+
+      - name: Install mySQL Client
+        run: sudo apt-get install mysql-client
+
+      - name: Run mySQL commands
+        run: |
+          mysql --h "127.0.0.1" -u ${{secrets.MYSQL_USER}} -p${{secrets.MYSQL_PASSWORD}} -e "SHOW DATABASES"
+
       - name: set env
         working-directory: ./mock-test
         run: |
@@ -55,7 +69,6 @@ jobs:
 
   fronttest:
     runs-on: ubuntu-latest
-    needs: backtest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
