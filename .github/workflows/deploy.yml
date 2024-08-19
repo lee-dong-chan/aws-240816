@@ -17,7 +17,7 @@ jobs:
           - 3306:3306
         env:
           MYSQL_ROOT_PASSWORD: root
-          MYSQL_USER: ${{ secrets.MTSQL_USER }}
+          MYSQL_USER: ${{ secrets.MYSQL_USER }}
           MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
           MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
         options: >-
@@ -38,12 +38,12 @@ jobs:
       - name: set env
         working-directory: ./mock-test
         run: |
-          echo MYSQL_HOST=$"{{secrets.MYSQL_HOST}}" > .env
-          echo MYSQL_USER=$"{{secrets.MTSQL_USER}}" >> .env
-          echo MYSQL_PASSWORD=$"{{secrets.MYSQL_PASSWORD})" >> .env
-          echo MYSQL_DATABASE=$"{{secrets.MYSQL_DATABASE}}" >> .env
-          echo PORT=$"{{secrets.PORT}" >> .env
-          echo MESSAGE=$"{{secrets.MESSAGE}}" >> .env
+          echo MYSQL_HOST="${{secrets.MYSQL_HOST}}" > .env
+          echo MYSQL_USER="${{secrets.MYSQL_USER}}" >> .env
+          echo MYSQL_PASSWORD="${{secrets.MYSQL_PASSWORD})" >> .env
+          echo MYSQL_DATABASE="${{secrets.MYSQL_DATABASE}}" >> .env
+          echo PORT="${{secrets.PORT}" >> .env
+          echo MESSAGE="${{secrets.MESSAGE}}" >> .env
 
       - name: Install dependencies of backend
         working-directory: ./mock-test
