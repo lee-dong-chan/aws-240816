@@ -23,7 +23,7 @@ describe("Test todo Axios", () => {
   });
 
   test("update todo", async () => {
-    const data = { id: 1, title: "test todo list", isCompleted: false };
+    const data = { id: 1, title: "test todo", isCompleted: false };
     mock.onPatch("/todo", { id: 1, title: "test todo" }).reply(201, data);
 
     const response = await updateTodo({ id: 1, title: "test todo" });

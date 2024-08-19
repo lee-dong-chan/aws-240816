@@ -114,6 +114,8 @@ describe("Test Todo", () => {
     const response = await request(app)
       .patch("/todo")
       .send({ id: 1, isCompleted: true });
+
+    console.log(response.body);
     expect(response.status).toBe(200);
     expect(response.body).toEqual({
       id: 1,

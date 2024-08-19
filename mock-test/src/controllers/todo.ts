@@ -19,7 +19,6 @@ router.get("/", async (req: Request, res: Response) => {
 
 router.patch("/", async (req: Request, res: Response) => {
   try {
-    console.log(req.body);
     const todo = await patchTodo(req.body);
     res.status(200).json(todo);
   } catch (error) {
