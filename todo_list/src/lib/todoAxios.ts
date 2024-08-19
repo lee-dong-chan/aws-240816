@@ -8,7 +8,7 @@ export interface Todo {
 
 export const getList = async (): Promise<Todo[]> => {
   try {
-    const response = await instance.get("/todo");
+    const response = await instance.get("/todo", { withCredentials: true });
     return response.data;
   } catch (error) {
     throw new Error("Failed to Get List");
@@ -17,7 +17,11 @@ export const getList = async (): Promise<Todo[]> => {
 
 export const addTodo = async ({ title }: Todo): Promise<Todo> => {
   try {
-    const response = await instance.post("/todo", { title });
+    const response = await instance.post(
+      "/todo",
+      { title },
+      { withCredentials: true }
+    );
     return response.data;
   } catch (error) {
     console.log(error);
@@ -27,7 +31,11 @@ export const addTodo = async ({ title }: Todo): Promise<Todo> => {
 
 export const updateTodo = async ({ id, title }: Todo): Promise<Todo> => {
   try {
-    const response = await instance.patch(`/todo`, { id, title });
+    const response = await instance.patch(
+      `/todo`,
+      { id, title },
+      { withCredentials: true }
+    );
     return response.data;
   } catch (error) {
     console.log(error);
@@ -37,7 +45,9 @@ export const updateTodo = async ({ id, title }: Todo): Promise<Todo> => {
 
 export const deleteTodo = async ({ id }: Todo): Promise<Todo> => {
   try {
-    const response = await instance.delete(`/todo/${id}`);
+    const response = await instance.delete(`/todo/${id}`, {
+      withCredentials: true,
+    });
     return response.data;
   } catch (error) {
     console.log(error);
