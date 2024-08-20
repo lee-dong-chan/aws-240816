@@ -201,9 +201,9 @@ jobs:
           ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} '
             rm -rf /var/www/backend
             mkdir /var/www/backend'
-          rsync -avz -e "ssh" ./mock-test/build/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/backend
-          rsync -avz -e "ssh" ./mock-test/package.json ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/backend/package.json
-          rsync -avz -e "ssh" ./mock-test/.env ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/backend/.env
+          rsync -avz -e "ssh" ./mock-test/build/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/testback
+          rsync -avz -e "ssh" ./mock-test/package.json ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/testback/package.json
+          rsync -avz -e "ssh" ./mock-test/.env ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/testback/.env
 
       - name: Install and Configure Node.js and PM2
         run: |
@@ -216,7 +216,7 @@ jobs:
               exit 1
             fi
             nvm use --lts
-            cd /var/www/backend
+            cd /var/www/testback
             npm i --production'
 
       - name: Start Server
@@ -232,7 +232,7 @@ jobs:
             nvm use --lts
             npm install -g pm2
             pm2 stop all
-            pm2 start /var/www/backend/index.js --name backend
+            pm2 start /var/www/testback/index.js --name backend
           '
 
   deploy_front:
