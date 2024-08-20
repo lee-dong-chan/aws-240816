@@ -7,7 +7,7 @@ config();
 
 describe("Test Express App", () => {
   test("Get / return Now Testing", async () => {
-    const response = await request(app).get("/api");
+    const response = await request(app).get("/todo/api");
     expect(response.status).toBe(200);
     expect(response.text).toBe("Now Testing");
   });
