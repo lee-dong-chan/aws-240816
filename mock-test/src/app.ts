@@ -13,9 +13,9 @@ const app: Express = express();
 // );
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use("/api/todo", todo);
+app.use("/todo/api/todo", todo);
 
-app.get("/api", (req: Request, res: Response) => {
+app.get("/todo/api", (req: Request, res: Response) => {
   res.status(200).send(process.env.MESSAGE || "AWS's Members");
 });
 
